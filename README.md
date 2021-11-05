@@ -1,0 +1,2 @@
+# HeroLottery
+Celtra naloga.
