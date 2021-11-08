@@ -1,0 +1,47 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  display: table-cell;
+  vertical-align: middle;
+}
+#scores {
+  background-color: black;
+  color: white;
+  max-height: 150px;
+  min-height: 150px;
+  max-width: 300px;
+  min-width: 300px;
+  overflow: auto;
+  margin: 1em;
+}
+
+#main {
+  overflow: hidden;
+}
+#scores {
+  float: left;
+}
+#input-form {
+  overflow: hidden;
+}
+
+#inputs {
+  overflow: hidden;
+}
+#input-name {
+  float: left;
+}
+#input-number {
+  overflow: hidden;
+}
+#btn-submit{
+    align-self: center;
+}

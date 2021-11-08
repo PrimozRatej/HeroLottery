@@ -1,0 +1,26 @@
+mysql> mysql -u root -p
+mysql> \! cls
+
+sh C:/Users/primo/dev/HeroLottery/db/bash.sh
+
+\. ali source
+
+
+use lottery_db;
+INSERT INTO user (id, name) VALUES (1 ,'Tom');
+
+INSERT INTO user (id, name)
+VALUES (2, 'Nik');
+
+INSERT INTO user (id, name)
+VALUES (3, 'Jan');
+
+INSERT INTO raffle (id, lottery_number, created_at)
+VALUES (1, 5, '2021-11-06 22:54:00');
+
+INSERT INTO raffle (id, lottery_number, created_at)
+VALUES (2, 15, '2021-11-06 22:54:00');
+
+INSERT INTO user_raffle (user_id, raffle_id, selected_number, selected_at)
+VALUES (1, 1, 5, '2021-11-06 22:54:12');
+

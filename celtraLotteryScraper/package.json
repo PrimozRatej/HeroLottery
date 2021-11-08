@@ -1,0 +1,16 @@
+{
+  "name": "service_listener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Primož Ratej",
+  "license": "ISC"
+}

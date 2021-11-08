@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Celtra lottery</h1>
+    <span id="clock">00:00:00</span>
+    <div>
+        <h2 id="next-raffle">New winner in 00s</h2>
+    </div>
+    <div id="main">
+        <div id="scores">
+            <ul>
+
+            </ul>
+        </div>
+        <div id="input-form">
+            <div id="inputs">
+                <input id="input-name" placeholder="Name">
+                <input id="input-number" placeholder="# number">
+            </div>
+            <button id="btn-submit">Submit</button>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
