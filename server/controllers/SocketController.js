@@ -1,46 +1,50 @@
+const http = require('http').createServer();
 const io = require('socket.io')(http, {
     cors: { origin: "*" }
 });
 
 class SocketController {
 
-    start = (name, onEvent) => io.on('connection', (socket) => {
-        console.log('a user connected');
-        socket.on('bet', (name, number) => {
-            console.log(name);
-            var date = new Date().toJSON().slice(0, 19).replace('T', ' ');
-            let sql = `CALL user_attend_raffle_in_progress('${name}', ${number}, '${new Date().toJSON().slice(0, 19).replace('T', ' ')}');`;
-            mysql.connection.query(sql, function (err, result, fields) {
-                if (err) throw err;
-            });
-        });
-    });
-    
-    emitServerDate = setInterval(function () {
-        io.emit('datetime', new Date());
-    }, 1000);
-    
-    io.on('connection', handleFirstConnection);
-    
-    function handleFirstConnection(socket) {
-        emitScoreData(socket);
+    static build() {
+        return new SocketController();
     }
-    
-    async function emitScoreData(socket) {
+
+    emitScore = (data, socket) => {
         try {
-            const raffles = await getlastRaffles(5);
-            var raffleResult = [];
-            for (const raffle of raffles) {
-                const winingUsers = await getWinnersForRaffle(raffle);
-                raffleResult.push(new RaffleWinnersDTO(raffle, winingUsers));
-            }
-            if(socket !== undefined) io.to(socket.id).emit('raffle_score', raffleResult)
-            else io.emit('raffle_score', raffleResult);
+            if (socket !== undefined) io.to(socket.id).emit('score', data)
+            else io.emit('score', data);
         } catch (error) {
             console.log(error)
         }
     }
+
+    start = async () => {
+
+        setInterval(() => {
+            io.emit('datetime', new Date());
+        }, 1000);
+
+        http.listen(8080, () => console.log('listening on http://localhost:8080'));
+    }
+
+    onClientConnect = async (result) => {
+        var self = this;
+        io.sockets.on('connection', function (socket) {
+            console.log(`Socket \u001b[1;33m ${socket.id} \u001b[0m \u001b[1;32m connected \u001b[0m`);
+            self.emitScore(result, socket);
+        });
+    }
+
+    onClientAttendRaffle = async (eventFunction) => {
+        io.on('connection', function(socket) {     
+            socket.on('bet', (arg) => {
+                console.log(`Client \u001b[1;33m ${socket.id} \u001b[0m \u001b[1;32m connected \u001b[0m`);
+                var validator = eventFunction(arg);
+                io.emit('validation', validator);
+            });
+        });
+    }
 }
-module.exports = MySQlController
 
 
+module.exports = SocketController

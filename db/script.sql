@@ -12,6 +12,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '07101971
 
 GRANT ALL PRIVILEGES ON lottery_db.* TO 'admin'@'localhost';
 
+FLUSH PRIVILEGES;
+
 SELECT SYSDATE() as timestamp, 'Start CREATE' as decsription;
 /* TODO separate every table to different file */
 SELECT SYSDATE() as timestamp, 'start user.sql' as decsription;
@@ -41,7 +43,6 @@ create table user_raffle (
 DELIMITER $$
 CREATE PROCEDURE `user_attend_raffle_in_progress`(IN in_name VARCHAR(50), IN in_selected_number INT, IN in_selected_at DATETIME)
 BEGIN
-	DECLARE CONTINUE HANDLER FOR 1062
     BEGIN
 		SELECT CONCAT('Duplicate user (',in_name,',) occurred') AS message;
     END;

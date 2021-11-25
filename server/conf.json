@@ -1,0 +1,12 @@
+{
+    "mysql": {
+        "host": "localhost",
+        "database": "lottery_db",
+        
+        "root_user": "root",
+        "root_password": "07101971",
+    
+        "user": "admin",
+        "password": "admin123"
+    }
+}
