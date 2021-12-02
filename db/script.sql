@@ -40,10 +40,6 @@ create table user_raffle (
     FOREIGN KEY (raffle_id) REFERENCES raffle(id)
 );
 
-/*ALTER TABLE user_raffle 
-ADD generated_par_cat INT UNSIGNED AS (ifNull(raffle_id, 0)) NOT NULL,
-ADD UNIQUE INDEX user_raffle_unique_index (user_id, generated_par_cat);*/
-
 DELIMITER $$
 CREATE PROCEDURE `user_attend_raffle_in_progress`(IN in_name VARCHAR(50), IN in_selected_number INT, IN in_selected_at DATETIME)
 BEGIN
