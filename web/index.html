@@ -11,29 +11,46 @@
 </head>
 
 <body>
-    <img src="/web/img/celtra_lottery_logo.svg" alt="Kiwi standing on oval">
-    <div id="clock">00:00:00</div>
-    <div>
-        <h2 id="next-raffle">New winner in 00s</h2>
-    </div>
-    <div id="main">
-        <div id="scores">
-            <ul>
 
-            </ul>
-        </div>
-        <div id="input-form">
-            <div id="inputs">
-                <input id="input-name" placeholder="Name">
-                <input id="input-number" placeholder="# number">
+    <div class="header">
+        <div class="header-one">
+            <img class="center" src="/web/img/celtra_lottery_logo.svg">
+            <div class="center" id="clock">00:00:00</div>
+            <div class="center">
+                <h2 id="next-raffle">New winner in 00s</h2>
             </div>
-            <button class="popup">Submit
-                <span class="popuptext hide" id="okPopup">👍 Good luck</span>
-            </button>
         </div>
+        <div class="wrapper">
+            <div class="box" id="scores">
+                <ul>
 
-
+                </ul>
+            </div>
+            <div class="box form" id="input-form">
+                <div class="div-wrap">
+                    <div id="inputs">
+                        <input id="input-name" placeholder="Name">
+                        <input id="input-number" placeholder="# number">
+                    </div>
+                    <div class="center">
+                        <button class="button-24" role="button" placeholder="Enter Name">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="popup" id="popup-div">
+            <span class="popuptext hide" id="popupId"></span>
+        </div>
     </div>
+
 </body>
+
+
+
+
+
 
 </html>

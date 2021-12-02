@@ -1,14 +1,11 @@
-const { error } = require('console');
 const MySQlController = require('./controllers/MySQlController');
 const SocketController = require('./controllers/SocketController');
+require('dotenv').config({ path: '../.env' });
 
-const http = require('http').createServer();
-const io = require('socket.io')(http, {
-    cors: { origin: "*" }
-});
+const env = setEvn();
 
 const socket = SocketController.build();
-const mysql = MySQlController.build();
+const mysql = MySQlController.build(env);
 
 const program = async () => {
 
@@ -16,9 +13,16 @@ const program = async () => {
 
     mysql.eventListener.start();
 
-    socket.onClientConnect(data = await mysql.queries.getScore());
+    socket.onClientConnect(mysql.queries.getScore);
 
-    socket.onClientAttendRaffle(mysql.queries.userAttendRaffle);
+    socket.onClientAttendRaffle(mysql.functions.userAttendRaffle);
+
+    mysql.eventListener.addTrigger(
+        mysql.tableUpdateTrigger('user_raffle', async function () {
+            var score = await mysql.queries.getScore();
+            socket.emitScore(score);
+        })
+    );
 
     mysql.eventListener.addTrigger(
         mysql.tableInsertTrigger('raffle', async function () {
@@ -32,3 +36,17 @@ program()
     .catch(() => {
         console.log(error);
     });
+
+function setEvn() {
+    return {
+        MYSQL_ROOT_USERNAME: process.env.MYSQL_ROOT_USERNAME,
+        MYSQL_ROOT_PASSWORD: process.env.MYSQL_ROOT_PASSWORD,
+        MYSQL_ADMIN_USERNAME: process.env.MYSQL_ADMIN_USERNAME,
+        MYSQL_ADMIN_PASSWORD: process.env.MYSQL_ADMIN_PASSWORD,
+        MYSQL_DATABASE: process.env.MYSQL_DATABASE,
+        MYSQL_HOST: process.env.MYSQL_HOST,
+        MYSQL_LOCAL_PORT: process.env.MYSQL_LOCAL_PORT,
+        MYSQL_DOCKER_PORT: process.env.MYSQL_DOCKER_PORT,
+        NODEJS_LOCAL_PORT: process.env.NODEJS_LOCAL_PORT
+    }
+}

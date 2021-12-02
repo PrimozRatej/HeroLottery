@@ -23,4 +23,3 @@ VALUES (2, 15, '2021-11-06 22:54:00');
 
 INSERT INTO user_raffle (user_id, raffle_id, selected_number, selected_at)
 VALUES (1, 1, 5, '2021-11-06 22:54:12');
-

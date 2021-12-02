@@ -1,6 +1,11 @@
 html,
 body {
   height: 100%;
+  background-color: black;
+}
+
+* {
+  font-family: Consolas, monaco, monospace;
 }
 
 html {
@@ -12,64 +17,87 @@ body {
   display: table-cell;
   vertical-align: middle;
 }
-#scores {
-  background-color: black;
-  color: white;
-  max-height: 150px;
-  min-height: 150px;
-  max-width: 300px;
-  min-width: 300px;
-  overflow: auto;
-  margin: 1em;
+
+.wrapper {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  margin: auto;
+}
+
+.header-one {
+  background-color: yellow;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+}
+
+.form {
+  background-color: yellow;
+  width: 59%;
+  border-radius: 25px;
+  border: 2px solid red;
+}
+.div-wrap {
+  margin: 20px;
+  overflow: hidden;
 }
 
 #main {
   overflow: hidden;
 }
-#scores {
-  float: left;
+
+.box {
+  vertical-align: top;
+  display: inline-block;
+  color: white;
+  max-height: 150px;
+  min-height: 150px;
+  max-width: 400px;
+  min-width: 400px;
+  margin: 10px;
 }
-#input-form {
+
+#scores {
+  background-color: black;
+  width: 40%;
+}
+
+#input-name {
   overflow: hidden;
 }
 
-#inputs {
-  overflow: hidden;
-}
-#input-name {
-  float: left;
-}
 #input-number {
   overflow: hidden;
 }
-#btn-submit{
-    align-self: center;
+
+#btn-submit {
+  align-self: center;
 }
 
 /* Popup */
 .popup {
-  position:fixed;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: inline-block;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  margin: auto;
+  left: 25%;
 }
 
 .popup .popuptext {
+  position: relative;
   visibility: hidden;
-  width: 160px;
-  background-color: #90ee90;
+  width: 250px;
   color: #000000;
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  bottom: -200%;
-  left: 50%;
-  margin-left: -80px;
 }
 
 .popup .show {
@@ -84,24 +112,129 @@ body {
   animation: fadeOut 1s;
 }
 
+img {
+  align-self: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.button-24 {
+  background: black;
+  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  touch-action: manipulation;
+  vertical-align: middle;
+  vertical-align: bottom;
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: black;
+}
+
+.button-24:active {
+  opacity: 0.5;
+}
+
+input {
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  text-indent: 10px;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+ul{
+  font-size: small;
+}
+li{
+  margin: 2px;
+}
+
+@media screen and (max-width: 856px) {
+  .box {
+    display: block;
+  }
+
+  #scores {
+    width: 100%;
+  }
+
+  #input-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 856px) {
+  .box {
+    display: block;
+  }
+
+  #scores {
+    width: 100%;
+  }
+
+  #input-form {
+    width: 100%;
+  }
+}
+
 /* Animations */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;} 
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeOut {
-  from {opacity: 1;} 
-  to {opacity: 0;}
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeOut {
-  from {opacity: 1;}
-  to {opacity: 0;}
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-
