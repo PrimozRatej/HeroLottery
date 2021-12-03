@@ -1,0 +1,81 @@
+version: "3.7"
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysql
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    networks:
+      - celtra_lotery_network
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_USER: ${MYSQL_ADMIN_USERNAME}
+    ports:
+      - $MYSQL_PORT:$MYSQL_PORT
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+
+  scraper:
+    restart: unless-stopped
+    container_name: scraper
+    networks:
+      - celtra_lotery_network
+    build:
+      context: .
+      dockerfile: ./scraper/Dockerfile
+    image: scraper
+    env_file:
+      - ./.env
+    ports:
+      - $NODE_SCRAPER_PORT:$NODE_SCRAPER_PORT
+    volumes:
+      - ./scraper:/scraper
+      - /scraper/node_modules
+    depends_on:
+      - mysqldb
+    stdin_open: true
+    tty: true
+
+  server:
+    restart: unless-stopped
+    container_name: server
+    networks:
+      - celtra_lotery_network
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    image: server
+    env_file:
+      - ./.env
+    ports:
+      - $NODE_SERVER_PORT:$NODE_SERVER_PORT
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    depends_on:
+      - mysqldb
+    stdin_open: true
+    tty: true
+
+  client:
+    container_name: client
+    image: nginx
+    ports:
+    - "80:80"
+    volumes:
+    - ./web:/usr/share/nginx/html
+    depends_on:
+    - server
+    networks:
+    - celtra_lotery_network
+
+volumes:
+  db-config: null
+  db-data:
+
+networks:
+  celtra_lotery_network:
