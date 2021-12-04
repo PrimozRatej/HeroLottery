@@ -24,7 +24,7 @@ class SocketController {
             io.emit('datetime', new Date());
         }, 1000);
 
-        http.listen(3001, () => console.log('listening on http://server:3001'));
+        http.listen(8080, () => console.log('listening on http://localhost:8080'));
     }
 
     onClientConnect = async (dataFun) => {

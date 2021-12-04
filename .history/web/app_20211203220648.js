@@ -1,4 +1,4 @@
-const socket = io('ws://server:3001');
+const socket = io('ws://server:8080');
 
 document.querySelector('button').onclick = () => {
     const user = document.querySelector('#input-name').value;
