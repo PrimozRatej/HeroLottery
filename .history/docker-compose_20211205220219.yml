@@ -16,8 +16,6 @@ services:
       - $MYSQL_PORT:$MYSQL_PORT
     volumes:
       - ./db:/docker-entrypoint-initdb.d
-    networks:
-        - celtra_lottery_network
 
   scraper:
     restart: unless-stopped
@@ -37,8 +35,6 @@ services:
       - mysqldb
     stdin_open: true
     tty: true
-    networks:
-        - celtra_lottery_network
 
   server:
     restart: unless-stopped
@@ -58,25 +54,22 @@ services:
       - mysqldb
     stdin_open: true
     tty: true
-    networks:
-        - celtra_lottery_network
 
-  client:
-    image: nginx
-    container_name: client
-    ports:
+    client:
+      restart: unless-stopped
+      container_name: client
+      build:
+        context: .
+        dockerfile: ./web/Dockerfile
+      image: client
+      env_file:
+        - ./.env
+      ports:
         - 80:80
-    volumes:
-      - ./web:/usr/share/nginx/html
-    networks:
-      - celtra_lottery_network
-    links:
-      - server
+      volumes:
+        - ./web:/web
+
 
 volumes:
   db-config: null
   db-data:
-
-networks:
-   celtra_lottery_network:
-      driver: bridge

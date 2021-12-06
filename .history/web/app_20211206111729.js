@@ -1,4 +1,4 @@
-const socket = io('ws://localhost:3001/');
+const socket = require('socket.io-client')('ws://nginx');
 
 document.querySelector('button').onclick = () => {
     const user = document.querySelector('#input-name').value;

@@ -6,7 +6,7 @@ host = process.env.MYSQL_HOST;
 user = process.env.MYSQL_ADMIN_USERNAME;
 password = process.env.MYSQL_ADMIN_PASSWORD;
 database = process.env.MYSQL_DATABASE;
-port = process.env.MYSQL_PORT;;
+port = process.env.MYSQL_DOCKER_PORT;;
 
 class RaffleDTO {
     lotteryNumber;

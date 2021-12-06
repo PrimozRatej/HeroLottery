@@ -65,13 +65,14 @@ services:
     image: nginx
     container_name: client
     ports:
-        - 80:80
+        - 4200:4200
     volumes:
+      - ./web/nginx.conf:/etc/nginx/nginx.conf
       - ./web:/usr/share/nginx/html
+    depends_on:
+      - server
     networks:
       - celtra_lottery_network
-    links:
-      - server
 
 volumes:
   db-config: null

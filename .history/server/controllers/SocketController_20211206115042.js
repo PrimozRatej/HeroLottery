@@ -1,6 +1,7 @@
 const http = require('http').createServer();
 const io = require('socket.io')(http, {
-    cors: { origin: "*" }
+    cors: { origin: "*" },
+    path: '/mysocket'
 });
 
 class SocketController {
@@ -8,7 +9,7 @@ class SocketController {
     static build() {
         return new SocketController();
     }
-    // fdjfhjdhfjdfhfjdfhjd
+
     emitScore = (data, socket) => {
         try {
             if (socket !== undefined) io.to(socket.id).emit('score', data)
@@ -24,7 +25,7 @@ class SocketController {
             io.emit('datetime', new Date());
         }, 1000);
 
-        http.listen(3001,() => console.log('listening on http://server:3001'));
+        http.listen(3001, '0.0.0.0',() => console.log('listening on http://server:3001'));
     }
 
     onClientConnect = async (dataFun) => {
