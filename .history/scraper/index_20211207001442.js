@@ -26,7 +26,8 @@ var connection = mysql.createConnection({
     user: user,
     password: password,
     database: database,
-    port: port
+    port: port,
+    insecureAuth : true
 });
 
 setInterval(() => {

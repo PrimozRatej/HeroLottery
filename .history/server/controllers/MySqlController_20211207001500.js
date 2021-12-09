@@ -32,14 +32,16 @@ class MySQlController {
             host: this.HOST,
             user: this.USER,
             password: this.PASSWORD,
-            database: this.DATABASE
+            database: this.DATABASE,
+            insecureAuth : true
         });
 
         this.eventListener = new MySqlEvents({
             host: this.HOST,
             user: this.ROOT_USER,
             password: this.ROOT_PASSWORD,
-            database: this.DATABASE
+            database: this.DATABASE,
+            insecureAuth : true
         }, {
             startAtEnd: true,
         });

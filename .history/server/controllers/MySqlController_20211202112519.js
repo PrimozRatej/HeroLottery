@@ -32,7 +32,7 @@ class MySQlController {
             host: this.HOST,
             user: this.USER,
             password: this.PASSWORD,
-            database: this.DATABASE
+            database: this.DATABASE,
         });
 
         this.eventListener = new MySqlEvents({

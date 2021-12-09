@@ -2,17 +2,17 @@ DROP DATABASE IF EXISTS lottery_db;
 CREATE DATABASE lottery_db;
 USE lottery_db;
 
-DROP USER IF EXISTS 'admin'@'%';
+DROP USER IF EXISTS 'admin'@'localhost';
 
-CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY 'admin123';
+CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'admin123';
 
-ALTER USER 'root'@'%' IDENTIFIED BY '07101971';
+ALTER USER 'root'@'localhost' IDENTIFIED IED BY '07101971';
 
-ALTER USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY 'admin123';
+ALTER USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin123';
 
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '07101971';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '07101971';
 
-GRANT ALL PRIVILEGES ON lottery_db.* TO 'admin'@'%';
+GRANT ALL PRIVILEGES ON lottery_db.* TO 'admin'@'localhost';
 
 FLUSH PRIVILEGES;
 

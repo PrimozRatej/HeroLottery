@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   mysqldb:
-    image: mysql:latest
+    image: mysql:8.0.22
     container_name: mysql
     restart: unless-stopped
     env_file:
